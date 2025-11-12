@@ -24,7 +24,7 @@ const Login = () => {
                 email, password
             }, {withCredentials: true});
 
-            dispatch(setUserData(result.data));
+            dispatch(setUserData(result?.data));
             dispatch(setSelectedUser(null));
             navigate('/');
             setEmail('');
