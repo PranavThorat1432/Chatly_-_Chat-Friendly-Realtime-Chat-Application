@@ -13,7 +13,7 @@ const getMessages = () => {
     useEffect(() => {
         const fetchMessages = async () => {
             try {
-                let result = await axios.get(`${serverUrl}/api/msg/get-msgs/${selectedUser._id}`, {
+                let result = await axios.get(`${serverUrl}/api/msg/get-msgs/${selectedUser?._id}`, {
                     withCredentials: true
                 });
                 dispatch(setMessages(result.data));
