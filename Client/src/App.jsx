@@ -5,7 +5,7 @@ import Login from './Pages/Login'
 import getCurrentUser from './customHooks/getCurrentUser';
 import { useDispatch, useSelector } from 'react-redux';
 import Home from './Pages/Home';
-import Profile from './Pages/profile';
+import Profile from './Pages/Profile';
 import getOtherUsers from './customHooks/getOtherUsers';
 import { io } from 'socket.io-client';
 import { setOnlineUsers, setSocket } from './redux/userSlice';
