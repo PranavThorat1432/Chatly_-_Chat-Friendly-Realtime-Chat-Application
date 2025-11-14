@@ -54,17 +54,22 @@ export const getMsgs = async (req, res) => {
         const sender = req.userId;
         const {receiver} = req.params;
 
+        // Validate receiver ID
+        if (!receiver || receiver === 'undefined') {
+            return res.status(400).json({
+                message: 'Invalid receiver ID'
+            });
+        }
+
         let conversation = await Conversation.findOne({
             participants: {$all: [sender, receiver]}
         }).populate('messages');
 
         if(!conversation) {
-            return res.status(400).json({
-                message: 'Conversation not found'
-            });
+            return res.status(200).json([]);
         }
 
-        return res.status(200).json(conversation?.messages);
+        return res.status(200).json(conversation?.messages || []);
 
     } catch (error) {
         return res.status(500).json({

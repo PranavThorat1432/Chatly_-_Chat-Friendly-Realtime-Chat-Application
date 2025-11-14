@@ -5,7 +5,7 @@ import bcrypt from 'bcryptjs';
 
 export const signup = async (req, res) => {
     try {
-        const {userName, email, password} = req?.body;
+        const {userName, email, password} = req.body;
 
         const checKUserByUsername = await User.findOne({userName});
         if(checKUserByUsername) {
@@ -46,7 +46,7 @@ export const signup = async (req, res) => {
 
     } catch (error) {
         return res.status(500).json({
-            message: `Signup Internal server error: ${error}`
+            message: `Signup Internal server error: ${error}` 
         });
     }
 };
