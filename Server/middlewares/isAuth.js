@@ -2,23 +2,41 @@ import jwt from "jsonwebtoken";
 
 const isAuth = async (req, res, next) => {
     try {
-        let token = req.cookies.token;
-        if(!token) {
-            return res.status(400).json({
-                message: "Token not found, authorization denied"
-            })
-        };
+        const token = req.cookies?.token || 
+                     req.headers.authorization?.split(' ')[1];
+        
+        if (!token) {
+            return res.status(401).json({
+                success: false,
+                message: "Authentication required"
+            });
+        }
 
-        const verifyToken = await jwt.verify(token, process.env.JWT_SECRET);
-        // console.log(verifyToken); 
-        req.userId = verifyToken.userId;
+        const decoded = await jwt.verify(token, process.env.JWT_SECRET);
+        if (!decoded?.userId) {
+            return res.status(401).json({
+                success: false,
+                message: "Invalid token"
+            });
+        }
+
+        req.userId = decoded.userId;
         next();
-
     } catch (error) {
-        return res.status(500).json({
-            message: `isAuth Error: ${error}`
-        })
+        console.error('Auth error:', error);
+        
+        if (error.name === 'TokenExpiredError') {
+            return res.status(401).json({
+                success: false,
+                message: "Session expired, please login again"
+            });
+        }
+        
+        return res.status(401).json({
+            success: false,
+            message: "Not authorized, token failed"
+        });
     }
-}
+};
 
 export default isAuth;
