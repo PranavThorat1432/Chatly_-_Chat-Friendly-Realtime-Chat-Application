@@ -22,7 +22,9 @@ const Login = () => {
         try {
             let result = await axios.post(`${serverUrl}/api/auth/login`, {
                 email, password
-            }, {withCredentials: true});
+            }, {withCredentials: true}, {headers: {
+                'Content-Type': 'application/json',
+            }});
 
             dispatch(setUserData(result?.data));
             dispatch(setSelectedUser(null));

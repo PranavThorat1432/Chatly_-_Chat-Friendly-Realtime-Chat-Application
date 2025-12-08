@@ -24,7 +24,9 @@ const Signup = () => {
         try {
             let result = await axios.post(`${serverUrl}/api/auth/signup`, {
                 userName, email, password
-            }, {withCredentials: true});
+            }, {withCredentials: true}, {headers: {
+                'Content-Type': 'application/json',
+            }});
 
             dispatch(setUserData(result?.data));
             navigate('/profile');
