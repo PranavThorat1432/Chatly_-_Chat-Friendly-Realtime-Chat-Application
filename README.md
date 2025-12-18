@@ -206,7 +206,7 @@ This project is licensed under the **MIT License** — see the [LICENSE](./LICEN
 
 | Platform              | Link                                                          |
 | --------------------- | ------------------------------------------------------------- |
-| 🌐 **Live Demo**      | [View Now](https://linkedin-full-stack-clone-using-mern.onrender.com/)                        |
+| 🌐 **Live Demo**      | [View Now](https://chatly-chat-friendly-realtime-chat.vercel.app/)                        |
 | 🧑‍💻 **GitHub Repo** | [View Code](https://github.com/PranavThorat1432/Chatly_-_Chat-Friendly-Realtime-Chat-Application) |
 | 💼 **LinkedIn**       | [Connect with Me](https://www.linkedin.com/in/curiouspranavthorat/)       |
 | 📩 **Email**          | [pranavthorat95@gmail.com](mailto:pranavthorat95@gmail.com)   |
