@@ -73,11 +73,17 @@ const MessageArea = () => {
   };
 
   useEffect(() => {
-    socket.on('newMsg', (msg) => {
-      dispatch(setMessages([...messages, msg]));
-    })
+    if (socket) {
+      socket.on('newMsg', (msg) => {
+        dispatch(setMessages([...messages, msg]));
+      })
+    }
 
-    return () => socket.off('newMsg');
+    return () => {
+      if (socket) {
+        socket.off('newMsg');
+      }
+    };
   }, [messages, setMessages]);
 
 
