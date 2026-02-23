@@ -1,6 +1,14 @@
 import jwt from 'jsonwebtoken';
 import User from "../models/UserModel.js";
 import bcrypt from 'bcryptjs';
+import dotenv from 'dotenv';
+dotenv.config();
+
+// Validate JWT_SECRET on module load
+if (!process.env.JWT_SECRET) {
+    console.error('FATAL ERROR: JWT_SECRET is not defined.');
+    process.exit(1);
+}
 
 // Helper function to generate token
 const generateToken = (userId) => {

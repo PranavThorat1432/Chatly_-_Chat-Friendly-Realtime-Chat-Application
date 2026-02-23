@@ -1,4 +1,12 @@
 import jwt from "jsonwebtoken";
+import dotenv from 'dotenv';
+dotenv.config();
+
+// Validate JWT_SECRET on module load
+if (!process.env.JWT_SECRET) {
+    console.error('FATAL ERROR: JWT_SECRET is not defined.');
+    process.exit(1);
+}
 
 const isAuth = async (req, res, next) => {
     try {
